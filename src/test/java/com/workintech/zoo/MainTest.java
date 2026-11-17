@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ResultAnalyzer.class)
+@ExtendWith(com.workintech.zoo.ResultAnalyzer.class)
 class MainTest {
 
 
@@ -147,6 +147,7 @@ class MainTest {
         assertEquals("Not Found", errorResponse.getMessage());
         assertEquals(now, errorResponse.getTimestamp());
     }
+
 
     @Test
     @DisplayName("Test ZooException Creation")
