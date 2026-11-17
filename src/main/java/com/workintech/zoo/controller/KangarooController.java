@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/workintech/kangaroos")
+@RequestMapping("/kangaroos")
 public class KangarooController {
 
     private Map<Integer, Kangaroo> kangaroos;
@@ -42,6 +42,11 @@ public class KangarooController {
     // [POST] /workintech/kangaroos
     @PostMapping
     public Kangaroo add(@RequestBody Kangaroo kangaroo) {
+        // Hata senaryosu: Gelen id veya name boş olamaz
+        if (kangaroo.getId() == null || kangaroo.getName() == null) {
+            throw new IllegalArgumentException("Kangaroo id veya name null olamaz!");
+        }
+
         kangaroos.put(kangaroo.getId(), kangaroo);
         return kangaroos.get(kangaroo.getId());
     }

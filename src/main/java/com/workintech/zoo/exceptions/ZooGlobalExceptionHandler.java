@@ -27,12 +27,12 @@ public class ZooGlobalExceptionHandler {
     public ResponseEntity<ZooErrorResponse> handleGeneralException(Exception exception) {
         log.error("Beklenmedik bir hata oluştu: {}", exception.getMessage());
 
-        // Önce status (int), sonra message (String) veriliyor
+        // 500 yerine 400 (BAD_REQUEST) dönüyoruz!
         ZooErrorResponse errorResponse = new ZooErrorResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.BAD_REQUEST.value(),
                 exception.getMessage(),
                 System.currentTimeMillis()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
